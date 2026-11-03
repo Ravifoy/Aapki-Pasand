@@ -1,0 +1,143 @@
+/* ===== Common styles for every page of Aapki Pasand ===== */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff8ec;
+}
+
+/* ---------- Header ---------- */
+header {
+    background: linear-gradient(135deg, #7a1f2b, #b03a48);
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+header p {
+    margin: 5px 0 0 0;
+    color: #ffd88a;
+    font-size: 16px;
+}
+
+/* ---------- Navbar (Bootstrap + custom colours) ---------- */
+.navbar-custom {
+    background-color: #f4a300;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #4a1018;
+    font-weight: bold;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: white;
+}
+
+/* ---------- Common boxes and titles ---------- */
+.section-title {
+    text-align: center;
+    color: #7a1f2b;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+.sub-title {
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.box {
+    background-color: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #cccccc;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ---------- Buttons ---------- */
+.btn-shop {
+    background-color: #7a1f2b;
+    color: white;
+    border: none;
+}
+
+.btn-shop:hover {
+    background-color: #f4a300;
+    color: #4a1018;
+}
+
+/* ---------- Tables ---------- */
+.shop-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.shop-table th,
+.shop-table td {
+    border: 1px solid #d8b98a;
+    padding: 10px;
+    text-align: center;
+}
+
+.shop-table th {
+    background-color: #7a1f2b;
+    color: white;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    background-color: #4a1018;
+    color: white;
+    padding: 30px 0 15px 0;
+    margin-top: 40px;
+}
+
+.site-footer h4 {
+    color: #f4a300;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.site-footer a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 4px 0;
+}
+
+.site-footer a:hover {
+    color: #f4a300;
+}
+
+.copyright {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}

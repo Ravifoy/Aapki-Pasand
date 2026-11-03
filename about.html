@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aapki Pasand - About &amp; Contact</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <style>
+        .story-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #f4a300;
+            background-color: #f3e2c7;
+        }
+
+        /* Quiz */
+        .option {
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #999;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .option:hover {
+            border-color: #f4a300;
+        }
+
+        .option.selected {
+            background-color: lightblue;
+        }
+
+        #quizBtn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        #quizMessage {
+            margin-top: 15px;
+            font-weight: bold;
+            height: 25px;
+        }
+
+        /* Contact form */
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        #ratingValue {
+            font-weight: bold;
+            color: #7a1f2b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aapki Pasand</h1>
+        <p>Sweets &amp; Snacks &bull; Darjeeling</p>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🍬 Aapki Pasand</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">Order Online</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About &amp; Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- Our story (Bootstrap grid: image + text) -->
+        <h2 class="section-title">Our Story</h2>
+        <div class="box">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="story-img" src="images/shop.jpg" alt="Aapki Pasand shop">
+                </div>
+                <div class="col-md-7">
+                    <p>
+                        <b>Aapki Pasand</b> means <i>"your choice"</i> &ndash; and that is exactly what we serve.
+                        Our shop in <b>Darjeeling</b> brings together the sweets of <u>Bengal</u>,
+                        the snacks of <u>North India</u> and the flavours of the <u>hills</u>.
+                    </p>
+                    <p>Our specialities:</p>
+                    <ul>
+                        <li>Bengali Sweets
+                            <ul>
+                                <li>Rasgulla</li>
+                                <li>Sandesh</li>
+                                <li>Mishti Doi</li>
+                            </ul>
+                        </li>
+                        <li>Hill Specials
+                            <ul>
+                                <li>Veg Momos</li>
+                                <li>Sel Roti</li>
+                                <li>Darjeeling Tea</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Listen to a welcome message from our shop:</p>
+                    <audio controls>
+                        <source src="images/welcome.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timings table -->
+        <div class="box">
+            <h2 class="section-title">Shop Timings</h2>
+            <table class="shop-table">
+                <tr>
+                    <th>Day</th>
+                    <th>Opens</th>
+                    <th>Closes</th>
+                    <th>Hot Snacks Counter</th>
+                </tr>
+                <tr>
+                    <td>Monday &ndash; Saturday</td>
+                    <td>8:00 AM</td>
+                    <td>9:00 PM</td>
+                    <td>8 AM &ndash; 11 AM, 4 PM &ndash; 8 PM</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td>9:00 AM</td>
+                    <td>8:00 PM</td>
+                    <td>9 AM &ndash; 12 PM</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><mark>Open on all festivals &ndash; extended hours during Diwali, Durga Puja and Dashain.</mark></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+
+            <!-- Sweet Quiz (click + keyboard + mouseover events) -->
+            <div class="col-md-6">
+                <div class="box">
+                    <h2 class="section-title">Sweet Quiz 🍬</h2>
+                    <p class="sub-title">Click an option, then press <b>Enter</b> or the button</p>
+
+                    <p id="questionText"></p>
+                    <div class="option"></div>
+                    <div class="option"></div>
+                    <div class="option"></div>
+                    <div class="option"></div>
+
+                    <button id="quizBtn">Submit Answer</button>
+                    <p id="quizMessage"></p>
+                </div>
+            </div>
+
+            <!-- Contact / feedback form (Bootstrap form-control + validation) -->
+            <div class="col-md-6">
+                <div class="box">
+                    <h2 class="section-title">Contact Us</h2>
+
+                    <form onsubmit="return sendFeedback()">
+                        <label for="cname">Name:</label>
+                        <input type="text" id="cname" class="form-control" placeholder="Enter your name">
+                        <div id="cnameError" class="error"></div>
+
+                        <label for="cemail">Email:</label>
+                        <input type="email" id="cemail" class="form-control" placeholder="example@gmail.com">
+                        <div id="cemailError" class="error"></div>
+
+                        <label for="favourites">Favourite items (hold Ctrl to select more):</label>
+                        <select id="favourites" class="form-select" multiple size="4">
+                            <option value="Rasgulla">Rasgulla</option>
+                            <option value="Kaju Katli">Kaju Katli</option>
+                            <option value="Samosa">Samosa</option>
+                            <option value="Momos">Momos</option>
+                        </select>
+
+                        <label for="rating">Rate us: <span id="ratingValue">5</span> / 10</label>
+                        <input type="range" id="rating" class="form-range" min="1" max="10" value="5">
+
+                        <label for="message">Message:</label>
+                        <textarea id="message" class="form-control" rows="3" placeholder="Write your message"></textarea>
+                        <div id="messageError" class="error"></div>
+
+                        <br>
+                        <button type="submit" class="btn btn-shop w-100">Send Message</button>
+                    </form>
+
+                    <div id="feedbackOutput"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Aapki Pasand</h4>
+                    <p>Fresh sweets and snacks, made every day in Darjeeling.</p>
+                </div>
+                <div class="col-md-2">
+                    <h4>Quick Links</h4>
+                    <a href="menu.html">Menu</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="order.html">Order Online</a>
+                    <a href="about.html">Contact</a>
+                </div>
+                <div class="col-md-3">
+                    <h4>Shop Timings</h4>
+                    <p>Mon &ndash; Sat: 8:00 AM &ndash; 9:00 PM<br>Sunday: 9:00 AM &ndash; 8:00 PM</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Contact</h4>
+                    <p>📍 Darjeeling, West Bengal<br>📞 +91 XXXXX XXXXX<br>✉ aapkipasand@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">&copy; 2026 Aapki Pasand, Darjeeling. All Rights Reserved. | Photos: Wikimedia Commons</div>
+
+    <script>
+        /* ---------- Sweet Quiz ---------- */
+        const questions = [
+            {
+                question: "Which sweet is made from chhena and soaked in sugar syrup?",
+                options: ["A. Kaju Katli", "B. Rasgulla", "C. Besan Ladoo", "D. Soan Papdi"],
+                answer: "B. Rasgulla"
+            },
+            {
+                question: "Darjeeling is famous all over the world for its...",
+                options: ["A. Coffee", "B. Tea", "C. Cotton", "D. Spices"],
+                answer: "B. Tea"
+            },
+            {
+                question: "Which hill special is a steamed dumpling?",
+                options: ["A. Momos", "B. Jalebi", "C. Samosa", "D. Sel Roti"],
+                answer: "A. Momos"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = "";
+        let answered = false;
+
+        const questionText = document.getElementById("questionText");
+        const options = document.querySelectorAll(".option");
+        const quizBtn = document.getElementById("quizBtn");
+        const quizMessage = document.getElementById("quizMessage");
+
+        function showQuestion() {
+            questionText.innerHTML = "<b>Q" + (currentQuestion + 1) + ".</b> " + questions[currentQuestion].question;
+            for (let i = 0; i < options.length; i++) {
+                options[i].innerHTML = questions[currentQuestion].options[i];
+                options[i].classList.remove("selected");
+            }
+            selectedAnswer = "";
+            answered = false;
+            quizBtn.innerHTML = "Submit Answer";
+            quizMessage.innerHTML = "";
+        }
+
+        // Click to select an option
+        options.forEach(function (option) {
+            option.addEventListener("click", function () {
+                if (answered) {
+                    return;
+                }
+                options.forEach(function (item) {
+                    item.classList.remove("selected");
+                });
+                this.classList.add("selected");
+                selectedAnswer = this.innerHTML;
+            });
+        });
+
+        function submitAnswer() {
+            // Quiz finished -> restart
+            if (currentQuestion >= questions.length) {
+                currentQuestion = 0;
+                score = 0;
+                showQuestion();
+                return;
+            }
+
+            // Already answered -> go to next question
+            if (answered) {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                }
+                else {
+                    questionText.innerHTML = "Quiz complete!";
+                    options.forEach(function (option) {
+                        option.innerHTML = "";
+                        option.classList.remove("selected");
+                    });
+                    quizMessage.innerHTML = "Your score: " + score + " / " + questions.length;
+                    quizMessage.style.color = "#7a1f2b";
+                    quizBtn.innerHTML = "Play Again";
+                }
+                return;
+            }
+
+            if (selectedAnswer == "") {
+                quizMessage.innerHTML = "Please select an answer first";
+                quizMessage.style.color = "red";
+                return;
+            }
+
+            answered = true;
+            if (selectedAnswer == questions[currentQuestion].answer) {
+                score++;
+                quizMessage.innerHTML = "Correct! 🎉";
+                quizMessage.style.color = "green";
+            }
+            else {
+                quizMessage.innerHTML = "Wrong! Correct answer: " + questions[currentQuestion].answer;
+                quizMessage.style.color = "red";
+            }
+            quizBtn.innerHTML = "Next";
+        }
+
+        quizBtn.addEventListener("click", submitAnswer);
+
+        // Enter key submits the quiz (only when not typing in the contact form)
+        document.addEventListener("keydown", function (event) {
+            let typing = (event.target.tagName == "INPUT" || event.target.tagName == "TEXTAREA");
+            if (event.key == "Enter" && !typing) {
+                submitAnswer();
+            }
+        });
+
+        // Mouse-over effect on the quiz button
+        quizBtn.addEventListener("mouseover", function () {
+            quizBtn.style.backgroundColor = "#7a1f2b";
+        });
+        quizBtn.addEventListener("mouseout", function () {
+            quizBtn.style.backgroundColor = "#333";
+        });
+
+        showQuestion();
+
+        /* ---------- Contact form ---------- */
+        const rating = document.getElementById("rating");
+        const ratingValue = document.getElementById("ratingValue");
+
+        // Show the slider value as it changes
+        rating.addEventListener("mousemove", function () {
+            ratingValue.innerHTML = rating.value;
+        });
+        rating.addEventListener("click", function () {
+            ratingValue.innerHTML = rating.value;
+        });
+        rating.addEventListener("keyup", function () {
+            ratingValue.innerHTML = rating.value;
+        });
+
+        function sendFeedback() {
+            let name = document.getElementById("cname").value;
+            let email = document.getElementById("cemail").value;
+            let message = document.getElementById("message").value;
+            let favourites = document.getElementById("favourites");
+
+            let namePattern = /^[A-Za-z ]+$/;
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let valid = true;
+
+            document.getElementById("cnameError").innerHTML = "";
+            document.getElementById("cemailError").innerHTML = "";
+            document.getElementById("messageError").innerHTML = "";
+            document.getElementById("feedbackOutput").innerHTML = "";
+
+            if (!namePattern.test(name)) {
+                document.getElementById("cnameError").innerHTML = "Enter a valid name (alphabets only)";
+                valid = false;
+            }
+            if (!emailPattern.test(email)) {
+                document.getElementById("cemailError").innerHTML = "Enter a valid email ID";
+                valid = false;
+            }
+            if (message.length < 10) {
+                document.getElementById("messageError").innerHTML = "Message should be at least 10 characters";
+                valid = false;
+            }
+            if (valid == false) {
+                return false;
+            }
+
+            let selectedFavourites = [];
+            for (let i = 0; i < favourites.options.length; i++) {
+                if (favourites.options[i].selected) {
+                    selectedFavourites.push(favourites.options[i].value);
+                }
+            }
+
+            document.getElementById("feedbackOutput").innerHTML =
+                "<br><p class='success'>Thank you, " + name + "! We will reply soon.</p>" +
+                "Rating: " + rating.value + " / 10<br>" +
+                "Favourites: " + (selectedFavourites.length > 0 ? selectedFavourites.join(", ") : "None selected");
+
+            return false;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aapki Pasand - Order Online</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <style>
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border: 2px solid #f4a300;
+            box-shadow: none;
+        }
+
+        .qty {
+            width: 80px;
+            padding: 5px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #totalAmount {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            color: #7a1f2b;
+            margin-top: 15px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            padding: 8px 0;
+        }
+
+        .radio-group label,
+        .check-label {
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 30px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+        }
+
+        input[type="reset"] {
+            background-color: gray;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            opacity: 0.8;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aapki Pasand</h1>
+        <p>Sweets &amp; Snacks &bull; Darjeeling</p>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🍬 Aapki Pasand</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="order.html">Order Online</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About &amp; Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <h2 class="section-title">Order Online</h2>
+        <p class="sub-title">Choose your sweets, fill in your details and place the order</p>
+
+        <form onsubmit="return placeOrder()">
+
+            <input type="hidden" name="shopId" value="AP-DJ-01">
+
+            <div class="row">
+
+                <!-- Left: choose sweets -->
+                <div class="col-md-6">
+                    <div class="box">
+                        <h4>1. Choose Your Sweets</h4>
+                        <table class="shop-table">
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                            <tr>
+                                <td>Rasgulla</td>
+                                <td>₹ 20 / pc</td>
+                                <td><input type="number" class="qty" id="qty0" min="0" max="100" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Sandesh</td>
+                                <td>₹ 25 / pc</td>
+                                <td><input type="number" class="qty" id="qty1" min="0" max="100" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Mishti Doi</td>
+                                <td>₹ 60 / cup</td>
+                                <td><input type="number" class="qty" id="qty2" min="0" max="50" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Kaju Katli</td>
+                                <td>₹ 250 / 250 g</td>
+                                <td><input type="number" class="qty" id="qty3" min="0" max="20" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Samosa</td>
+                                <td>₹ 15 / pc</td>
+                                <td><input type="number" class="qty" id="qty4" min="0" max="100" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>Veg Momos</td>
+                                <td>₹ 80 / plate</td>
+                                <td><input type="number" class="qty" id="qty5" min="0" max="20" value="0"></td>
+                            </tr>
+                        </table>
+
+                        <p id="totalAmount">Total Amount: ₹ 0</p>
+                        <div id="itemsError" class="error"></div>
+
+                        <label for="box">Packing:</label>
+                        <select id="box" class="form-select">
+                            <option value="Normal Box">Normal Box</option>
+                            <option value="Gift Box">Gift Box</option>
+                            <option value="Clay Pot (for sweets in syrup)">Clay Pot (for sweets in syrup)</option>
+                        </select>
+
+                        <label for="ribbon">Gift Ribbon Colour:</label>
+                        <input type="color" id="ribbon" value="#b03a48">
+
+                        <br>
+                        <input type="checkbox" id="giftCard">
+                        <label for="giftCard" class="check-label">Add a free greeting card</label>
+
+                        <label for="note">Message for the card / special instructions:</label>
+                        <textarea id="note" class="form-control" rows="3" placeholder="Happy Diwali! / Less sugar please"></textarea>
+                    </div>
+                </div>
+
+                <!-- Right: customer details -->
+                <div class="col-md-6">
+                    <div class="box">
+                        <h4>2. Your Details</h4>
+
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" maxlength="50">
+                        <div id="nameError" class="error"></div>
+
+                        <label for="mobile">Mobile Number:</label>
+                        <input type="tel" id="mobile" class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10">
+                        <div id="mobileError" class="error"></div>
+
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" class="form-control" placeholder="example@gmail.com">
+                        <div id="emailError" class="error"></div>
+
+                        <label>Order Type:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="orderType" value="Shop Pickup"> Shop Pickup</label>
+                            <label><input type="radio" name="orderType" value="Home Delivery"> Home Delivery</label>
+                        </div>
+                        <div id="typeError" class="error"></div>
+
+                        <label for="address">Address / Landmark:</label>
+                        <textarea id="address" class="form-control" rows="2" placeholder="Enter address in Darjeeling"></textarea>
+                        <div id="addressError" class="error"></div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="date">Date:</label>
+                                <input type="date" id="date" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="time">Time:</label>
+                                <input type="time" id="time" class="form-control">
+                            </div>
+                        </div>
+                        <div id="dateError" class="error"></div>
+
+                        <label>Payment Method:</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="payment" value="Cash"> Cash</label>
+                            <label><input type="radio" name="payment" value="UPI"> UPI</label>
+                        </div>
+                        <div id="paymentError" class="error"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Place Order">
+                <input type="reset" value="Clear" onclick="clearOrder()">
+            </div>
+        </form>
+
+        <!-- Order summary appears here -->
+        <div id="output"></div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Aapki Pasand</h4>
+                    <p>Fresh sweets and snacks, made every day in Darjeeling.</p>
+                </div>
+                <div class="col-md-2">
+                    <h4>Quick Links</h4>
+                    <a href="menu.html">Menu</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="order.html">Order Online</a>
+                    <a href="about.html">Contact</a>
+                </div>
+                <div class="col-md-3">
+                    <h4>Shop Timings</h4>
+                    <p>Mon &ndash; Sat: 8:00 AM &ndash; 9:00 PM<br>Sunday: 9:00 AM &ndash; 8:00 PM</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Contact</h4>
+                    <p>📍 Darjeeling, West Bengal<br>📞 +91 XXXXX XXXXX<br>✉ aapkipasand@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">&copy; 2026 Aapki Pasand, Darjeeling. All Rights Reserved. | Photos: Wikimedia Commons</div>
+
+    <script>
+        // Item names and prices (same order as the table rows)
+        const itemNames = ["Rasgulla", "Sandesh", "Mishti Doi", "Kaju Katli (250 g)", "Samosa", "Veg Momos"];
+        const itemPrices = [20, 25, 60, 250, 15, 80];
+
+        const qtyInputs = document.querySelectorAll(".qty");
+        const totalAmount = document.getElementById("totalAmount");
+
+        // Calculate the total whenever a quantity changes
+        function calculateTotal() {
+            let total = 0;
+            for (let i = 0; i < qtyInputs.length; i++) {
+                let qty = Number(qtyInputs[i].value);
+                total = total + qty * itemPrices[i];
+            }
+            totalAmount.innerHTML = "Total Amount: ₹ " + total;
+            return total;
+        }
+
+        qtyInputs.forEach(function (input) {
+            input.addEventListener("keyup", calculateTotal);
+            input.addEventListener("click", calculateTotal);
+        });
+
+        function clearErrors() {
+            const errors = document.querySelectorAll(".error");
+            errors.forEach(function (e) {
+                e.innerHTML = "";
+            });
+            document.getElementById("output").innerHTML = "";
+        }
+
+        function clearOrder() {
+            clearErrors();
+            totalAmount.innerHTML = "Total Amount: ₹ 0";
+        }
+
+        function placeOrder() {
+            clearErrors();
+
+            let name = document.getElementById("name").value;
+            let mobile = document.getElementById("mobile").value;
+            let email = document.getElementById("email").value;
+            let address = document.getElementById("address").value;
+            let date = document.getElementById("date").value;
+            let time = document.getElementById("time").value;
+            let box = document.getElementById("box").value;
+            let note = document.getElementById("note").value;
+            let giftCard = document.getElementById("giftCard").checked;
+            let orderType = document.querySelector('input[name="orderType"]:checked');
+            let payment = document.querySelector('input[name="payment"]:checked');
+
+            let namePattern = /^[A-Za-z ]+$/;
+            let mobilePattern = /^[0-9]{10}$/;
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            let valid = true;
+            let total = calculateTotal();
+
+            if (total == 0) {
+                document.getElementById("itemsError").innerHTML = "Please select at least one item";
+                valid = false;
+            }
+
+            if (name == "") {
+                document.getElementById("nameError").innerHTML = "Name is required";
+                valid = false;
+            }
+            else if (!namePattern.test(name)) {
+                document.getElementById("nameError").innerHTML = "Name should contain only alphabets and spaces";
+                valid = false;
+            }
+
+            if (!mobilePattern.test(mobile)) {
+                document.getElementById("mobileError").innerHTML = "Enter a valid 10-digit mobile number";
+                valid = false;
+            }
+
+            if (email == "") {
+                document.getElementById("emailError").innerHTML = "Email is required";
+                valid = false;
+            }
+            else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerHTML = "Enter a valid email ID";
+                valid = false;
+            }
+
+            if (orderType == null) {
+                document.getElementById("typeError").innerHTML = "Please select pickup or delivery";
+                valid = false;
+            }
+
+            if (address == "") {
+                document.getElementById("addressError").innerHTML = "Address is required";
+                valid = false;
+            }
+
+            if (date == "" || time == "") {
+                document.getElementById("dateError").innerHTML = "Please select date and time";
+                valid = false;
+            }
+
+            if (payment == null) {
+                document.getElementById("paymentError").innerHTML = "Please select a payment method";
+                valid = false;
+            }
+
+            if (valid == false) {
+                return false;
+            }
+
+            // Build the list of ordered items
+            let itemRows = "";
+            for (let i = 0; i < qtyInputs.length; i++) {
+                let qty = Number(qtyInputs[i].value);
+                if (qty > 0) {
+                    itemRows = itemRows +
+                        "<tr><td>" + itemNames[i] + "</td><td>" + qty + "</td><td>₹ " + (qty * itemPrices[i]) + "</td></tr>";
+                }
+            }
+
+            document.getElementById("output").innerHTML =
+                "<div class='box'>" +
+                "<h2 class='section-title'>Order Summary</h2>" +
+                "<table class='shop-table'>" +
+                "<tr><th>Item</th><th>Quantity</th><th>Amount</th></tr>" +
+                itemRows +
+                "<tr><td colspan='2'><b>Total</b></td><td><b>₹ " + total + "</b></td></tr>" +
+                "</table><br>" +
+                "<b>Name:</b> " + name + "<br>" +
+                "<b>Mobile:</b> " + mobile + "<br>" +
+                "<b>Email:</b> " + email + "<br>" +
+                "<b>Order Type:</b> " + orderType.value + "<br>" +
+                "<b>Address:</b> " + address + "<br>" +
+                "<b>Date &amp; Time:</b> " + date + " at " + time + "<br>" +
+                "<b>Packing:</b> " + box + "<br>" +
+                "<b>Greeting Card:</b> " + (giftCard ? "Yes" : "No") + "<br>" +
+                "<b>Note:</b> " + note + "<br>" +
+                "<b>Payment:</b> " + payment.value +
+                "<p class='success'>Thank you! Your order has been placed.</p>" +
+                "</div>";
+
+            alert("Order Placed Successfully!");
+            return false;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

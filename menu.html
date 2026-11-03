@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aapki Pasand - Our Menu</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <style>
+        .search-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #searchInput {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #999;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #searchInput:focus {
+            border: 2px solid #f4a300;
+        }
+
+        #searchMessage {
+            text-align: center;
+            font-weight: bold;
+            color: #7a1f2b;
+            margin-top: 10px;
+            height: 25px;
+        }
+
+        .category-buttons {
+            text-align: center;
+            margin: 15px 0 25px 0;
+        }
+
+        .category-btn {
+            padding: 8px 18px;
+            margin: 4px;
+            border: 2px solid #7a1f2b;
+            border-radius: 20px;
+            background-color: white;
+            color: #7a1f2b;
+            cursor: pointer;
+        }
+
+        .category-btn.selected {
+            background-color: #7a1f2b;
+            color: white;
+        }
+
+        .sweet-card {
+            background-color: white;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .sweet-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #f3e2c7;
+        }
+
+        .sweet-card h4 {
+            color: #7a1f2b;
+            margin-top: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .price {
+            font-weight: bold;
+            color: green;
+            font-size: 18px;
+        }
+
+        .details {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aapki Pasand</h1>
+        <p>Sweets &amp; Snacks &bull; Darjeeling</p>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🍬 Aapki Pasand</a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="order.html">Order Online</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About &amp; Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <h2 class="section-title">Our Menu</h2>
+        <p class="sub-title">Type to search &bull; Press <b>Enter</b> to search &bull; Press <b>Esc</b> to clear</p>
+
+        <!-- Search box (keyboard events) -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search sweets, e.g. Rasgulla">
+        </div>
+        <p id="searchMessage"></p>
+
+        <!-- Category buttons (click events) -->
+        <div class="category-buttons">
+            <button class="category-btn selected" id="all">All</button>
+            <button class="category-btn" id="bengali">Bengali Sweets</button>
+            <button class="category-btn" id="dry">Dry Sweets</button>
+            <button class="category-btn" id="snacks">Hot Snacks</button>
+            <button class="category-btn" id="hill">Hill Specials</button>
+        </div>
+
+        <!-- Menu cards (Bootstrap grid) -->
+        <div class="row">
+
+            <div class="col-md-4 col-sm-6 item bengali">
+                <div class="sweet-card">
+                    <img src="images/rasgulla.jpg" alt="Rasgulla">
+                    <h4 class="sweet-name">Rasgulla</h4>
+                    <p>Soft, spongy chhena balls in light sugar syrup.</p>
+                    <p class="price">₹ 20 / piece</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item bengali">
+                <div class="sweet-card">
+                    <img src="images/sandesh.jpg" alt="Sandesh">
+                    <h4 class="sweet-name">Sandesh</h4>
+                    <p>Delicate Bengali sweet made from fresh chhena.</p>
+                    <p class="price">₹ 25 / piece</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item bengali">
+                <div class="sweet-card">
+                    <img src="images/mishti-doi.jpg" alt="Mishti Doi">
+                    <h4 class="sweet-name">Mishti Doi</h4>
+                    <p>Sweet, creamy curd set in clay pots.</p>
+                    <p class="price">₹ 60 / cup</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item dry">
+                <div class="sweet-card">
+                    <img src="images/kaju-katli.jpg" alt="Kaju Katli">
+                    <h4 class="sweet-name">Kaju Katli</h4>
+                    <p>Thin cashew fudge with a silver varq finish.</p>
+                    <p class="price">₹ 1000 / kg</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item dry">
+                <div class="sweet-card">
+                    <img src="images/besan-ladoo.jpg" alt="Besan Ladoo">
+                    <h4 class="sweet-name">Besan Ladoo</h4>
+                    <p>Roasted gram flour, ghee and cardamom.</p>
+                    <p class="price">₹ 480 / kg</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item dry">
+                <div class="sweet-card">
+                    <img src="images/soan-papdi.jpg" alt="Soan Papdi">
+                    <h4 class="sweet-name">Soan Papdi</h4>
+                    <p>Flaky, melt-in-the-mouth layered sweet.</p>
+                    <p class="price">₹ 400 / kg</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item snacks">
+                <div class="sweet-card">
+                    <img src="images/jalebi.jpg" alt="Jalebi">
+                    <h4 class="sweet-name">Jalebi</h4>
+                    <p>Crispy, hot spirals dipped in syrup.</p>
+                    <p class="price">₹ 300 / kg</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item snacks">
+                <div class="sweet-card">
+                    <img src="images/samosa.jpg" alt="Samosa">
+                    <h4 class="sweet-name">Samosa</h4>
+                    <p>Golden pastry filled with spiced potatoes.</p>
+                    <p class="price">₹ 15 / piece</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item snacks">
+                <div class="sweet-card">
+                    <img src="images/kachori.jpg" alt="Kachori">
+                    <h4 class="sweet-name">Kachori</h4>
+                    <p>Flaky fried bread stuffed with spiced dal.</p>
+                    <p class="price">₹ 15 / piece</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item hill">
+                <div class="sweet-card">
+                    <img src="images/momos.jpg" alt="Veg Momos">
+                    <h4 class="sweet-name">Veg Momos</h4>
+                    <p>Steamed dumplings with spicy tomato chutney.</p>
+                    <p class="price">₹ 80 / plate</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item hill">
+                <div class="sweet-card">
+                    <img src="images/sel-roti.jpg" alt="Sel Roti">
+                    <h4 class="sweet-name">Sel Roti</h4>
+                    <p>Traditional ring-shaped sweet rice bread.</p>
+                    <p class="price">₹ 20 / piece</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 item hill">
+                <div class="sweet-card">
+                    <img src="images/darjeeling-tea.jpg" alt="Darjeeling Tea">
+                    <h4 class="sweet-name">Darjeeling Tea</h4>
+                    <p>A hot cup of the famous local tea.</p>
+                    <p class="price">₹ 30 / cup</p>
+                    <button class="btn btn-shop btn-sm detail-btn">View Details</button>
+                    <p class="details"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Gift box table (HTML table with colspan) -->
+        <div class="box">
+            <h2 class="section-title">Festive Gift Boxes</h2>
+            <table class="shop-table">
+                <tr>
+                    <th>Box</th>
+                    <th>Contents</th>
+                    <th>Weight</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Mini Box</td>
+                    <td>Kaju Katli, Besan Ladoo</td>
+                    <td>250 g</td>
+                    <td>₹ 200</td>
+                </tr>
+                <tr>
+                    <td>Family Box</td>
+                    <td>Kaju Katli, Soan Papdi, Besan Ladoo</td>
+                    <td>500 g</td>
+                    <td>₹ 380</td>
+                </tr>
+                <tr>
+                    <td>Royal Box</td>
+                    <td>Assorted dry sweets with dry fruits</td>
+                    <td>1 kg</td>
+                    <td>₹ 900</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><mark>Custom boxes available for weddings and functions &ndash; order 2 days in advance.</mark></td>
+                </tr>
+            </table>
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Aapki Pasand</h4>
+                    <p>Fresh sweets and snacks, made every day in Darjeeling.</p>
+                </div>
+                <div class="col-md-2">
+                    <h4>Quick Links</h4>
+                    <a href="menu.html">Menu</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="order.html">Order Online</a>
+                    <a href="about.html">Contact</a>
+                </div>
+                <div class="col-md-3">
+                    <h4>Shop Timings</h4>
+                    <p>Mon &ndash; Sat: 8:00 AM &ndash; 9:00 PM<br>Sunday: 9:00 AM &ndash; 8:00 PM</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Contact</h4>
+                    <p>📍 Darjeeling, West Bengal<br>📞 +91 XXXXX XXXXX<br>✉ aapkipasand@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright">&copy; 2026 Aapki Pasand, Darjeeling. All Rights Reserved. | Photos: Wikimedia Commons</div>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const searchMessage = document.getElementById("searchMessage");
+        const items = document.querySelectorAll(".item");
+        const cards = document.querySelectorAll(".sweet-card");
+        const detailButtons = document.querySelectorAll(".detail-btn");
+        const detailTexts = document.querySelectorAll(".details");
+        const categoryButtons = document.querySelectorAll(".category-btn");
+
+        let selectedCategory = "all";
+
+        // Extra details shown when "View Details" is clicked (same order as the cards)
+        const details = [
+            "Best within 2 days | Keep refrigerated",
+            "Best within 2 days | Available daily",
+            "Best within 3 days | Keep refrigerated",
+            "Shelf life 10 days | Great for gifting",
+            "Shelf life 10 days | Made with pure ghee",
+            "Shelf life 15 days | Great for gifting",
+            "Served hot | Every morning and evening",
+            "Served hot | Comes with green chutney",
+            "Served hot | Comes with aloo sabzi",
+            "Served hot | 8 pieces per plate",
+            "Freshly made | Popular during Dashain and Tihar",
+            "Freshly brewed | Hill-grown Darjeeling leaves"
+        ];
+
+        // Show or hide cards based on search text and selected category
+        function filterMenu() {
+            let text = searchInput.value.toLowerCase();
+            let count = 0;
+
+            items.forEach(function (item) {
+                let name = item.querySelector(".sweet-name").innerHTML.toLowerCase();
+                let matchesText = name.includes(text);
+                let matchesCategory = (selectedCategory == "all" || item.classList.contains(selectedCategory));
+
+                if (matchesText && matchesCategory) {
+                    item.style.display = "block";
+                    count++;
+                }
+                else {
+                    item.style.display = "none";
+                }
+            });
+
+            return count;
+        }
+
+        // Keyboard events on the search box
+        searchInput.addEventListener("keyup", function (event) {
+
+            if (event.key === "Escape") {
+                searchInput.value = "";
+                searchInput.style.backgroundColor = "white";
+                searchMessage.innerHTML = "";
+                filterMenu();
+                return;
+            }
+
+            if (searchInput.value.length > 0) {
+                searchInput.style.backgroundColor = "#fff3d6";
+            }
+            else {
+                searchInput.style.backgroundColor = "white";
+            }
+
+            let count = filterMenu();
+
+            if (event.key === "Enter") {
+                searchMessage.innerHTML = "Searching for: " + searchInput.value;
+            }
+            else if (count == 0) {
+                searchMessage.innerHTML = "No sweets found";
+            }
+            else {
+                searchMessage.innerHTML = count + " item(s) found";
+            }
+        });
+
+        // Click events on category buttons
+        categoryButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                categoryButtons.forEach(function (b) {
+                    b.classList.remove("selected");
+                });
+                this.classList.add("selected");
+                selectedCategory = this.id;
+                let count = filterMenu();
+                searchMessage.innerHTML = count + " item(s) found";
+            });
+        });
+
+        // Mouse events: highlight a card on hover
+        cards.forEach(function (card) {
+            card.addEventListener("mouseover", function () {
+                card.style.borderColor = "#f4a300";
+                card.style.backgroundColor = "#fff3d6";
+            });
+            card.addEventListener("mouseout", function () {
+                card.style.borderColor = "#eee";
+                card.style.backgroundColor = "white";
+            });
+        });
+
+        // Click event: show details of a sweet
+        for (let i = 0; i < detailButtons.length; i++) {
+            detailButtons[i].addEventListener("click", function () {
+                detailTexts[i].innerHTML = details[i];
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
